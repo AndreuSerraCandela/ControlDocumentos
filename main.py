@@ -339,17 +339,110 @@ async def check_document(request: DocumentRequestWrapper):
     Verifica si un documento está en la lista de personas no permitidas
     """
     try:
-        logger.debug(f"Received document check request: {request}")
+        logger.debug(f"Received document check request")
+        # Convertir a diccionario para poder acceder a los campos
         doc_dict = request.model_dump()
+        
+        # Añadir logs para depuración
+        logger.debug(f"Estructura de request.body: {request.body}")
         
         # Extraer DNI del documento o usar valor por defecto
         dni = ""
-        if request.body and hasattr(request.body, "dni") and request.body.dni:
+        
+        # Intentar obtener el DNI de la propiedad principal
+        if hasattr(request.body, "dni") and request.body.dni:
             dni = request.body.dni
+            logger.debug(f"DNI extraído de la propiedad principal: {dni}")
+        
+        # Intentar extraer del transactionId si existe (algunas implementaciones lo usan)
+        if not dni and hasattr(request.body, "transactionId") and request.body.transactionId:
+            logger.debug(f"transactionId encontrado: {request.body.transactionId}")
+            
+        # Si el DNI está vacío, intentar extraerlo de resultJSON
+        try:
+            # Imprimir la estructura para depuración
+            result_json_dict = {}
+            if hasattr(request.body, "resultJSON") and request.body.resultJSON:
+                result_json_dict = request.body.resultJSON.model_dump()
+                logger.debug(f"Contenido de resultJSON: {result_json_dict}")
+                
+                # Primero intentar acceder a través de los atributos
+                if hasattr(request.body.resultJSON, "DocumentData") and request.body.resultJSON.DocumentData:
+                    if hasattr(request.body.resultJSON.DocumentData, "serviceDocument") and request.body.resultJSON.DocumentData.serviceDocument:
+                        service_doc = request.body.resultJSON.DocumentData.serviceDocument
+                        
+                        # Verificar FRONTSIDE.MRZ_DATA.PERSONAL_NUMBER
+                        if hasattr(service_doc, "FRONTSIDE"):
+                            frontside = service_doc.FRONTSIDE
+                            if isinstance(frontside, dict) and "MRZ_DATA" in frontside:
+                                mrz_data = frontside["MRZ_DATA"]
+                                if isinstance(mrz_data, dict) and "PERSONAL_NUMBER" in mrz_data:
+                                    dni = mrz_data["PERSONAL_NUMBER"]
+                                    logger.debug(f"DNI extraído de FRONTSIDE.MRZ_DATA.PERSONAL_NUMBER: {dni}")
+            
+            # Si no se encontró por el método anterior, intentar acceder directamente a través del diccionario
+            if not dni and "resultJSON" in doc_dict and doc_dict["resultJSON"]:
+                logger.debug("Intentando extraer DNI accediendo al diccionario doc_dict")
+                result_json = doc_dict["resultJSON"]
+                
+                if "DocumentData" in result_json and result_json["DocumentData"]:
+                    doc_data = result_json["DocumentData"]
+                    
+                    if "serviceDocument" in doc_data and doc_data["serviceDocument"]:
+                        service_doc = doc_data["serviceDocument"]
+                        
+                        if "FRONTSIDE" in service_doc and service_doc["FRONTSIDE"]:
+                            frontside = service_doc["FRONTSIDE"]
+                            
+                            if "MRZ_DATA" in frontside and frontside["MRZ_DATA"]:
+                                mrz_data = frontside["MRZ_DATA"]
+                                
+                                if "PERSONAL_NUMBER" in mrz_data:
+                                    dni = mrz_data["PERSONAL_NUMBER"]
+                                    logger.debug(f"DNI extraído del diccionario doc_dict: {dni}")
+        except Exception as e:
+            logger.error(f"Error al extraer DNI de resultJSON: {str(e)}", exc_info=True)
+        
+        # Si el DNI sigue vacío, revisar los datos de depuración
+        if not dni:
+            # Intentar extraer de la cadena de solicitud en bruto para propósitos de depuración
+            try:
+                logger.debug("Buscando DNI en la representación de cadena de la solicitud")
+                request_str = str(doc_dict)
+                import re
+                # Buscar patrones de DNI español (8 dígitos seguidos de una letra)
+                dni_matches = re.findall(r'PERSONAL_NUMBER[\'"]?\s*:\s*[\'"]([0-9]{8}[A-Za-z])[\'"]', request_str)
+                if dni_matches:
+                    dni = dni_matches[0]
+                    logger.debug(f"DNI extraído mediante expresión regular: {dni}")
+            except Exception as e:
+                logger.error(f"Error en extracción con regex: {str(e)}")
+        
+        # Si el DNI sigue vacío, devolver error
+        if not dni:
+            logger.warning("No se pudo obtener el DNI del documento")
+            result = {
+                "blocked": False,
+                "message": "No se pudo obtener el DNI del documento",
+                "documentData": doc_dict
+            }
+            verification_results.append(result)
+            return result
+            
+        # Actualizar el DNI en el doc_dict
+        if "dni" not in doc_dict or not doc_dict["dni"]:
+            doc_dict["dni"] = dni
+        
+        # Normalizar DNI a minúsculas para comparación
+        dni_normalizado = dni.lower()
+        logger.debug(f"DNI normalizado para comparación: {dni_normalizado}")
         
         # Verificar si la persona está en la lista de no permitidos
         for blocked_person in blocked_persons:
-            if blocked_person["dni"] == dni:
+            # Normalizar DNI de la persona bloqueada también
+            blocked_dni = blocked_person["dni"].lower()
+            logger.debug(f"Comparando con persona bloqueada: {blocked_person['name']}, DNI: {blocked_dni}")
+            if blocked_dni == dni_normalizado:
                 result = {
                     "blocked": True,
                     "message": "Persona no permitida",
