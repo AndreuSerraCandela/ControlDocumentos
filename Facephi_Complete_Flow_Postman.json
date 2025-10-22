@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "facephi-complete-flow",
+		"name": "Facephi Complete Flow - Start + Extract",
+		"description": "Flujo completo de Facephi: documentValidation/v2/start + extractDocumentDataWeb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Document Validation Start",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"ESP\",\n    \"idType\": \"DNI\",\n    \"documentRawImageMimeType\": \"image/jpeg\",\n    \"documentFrontRawImage\": \"{{base64_image}}\",\n    \"documentBackRawImage\": \"{{base64_image}}\",\n    \"merchantIdScanReference\": \"scan_ref_{{timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/verify/documentValidation/v2/start",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"verify",
+						"documentValidation",
+						"v2",
+						"start"
+					]
+				},
+				"description": "Paso 1: Subir imágenes y obtener tokens"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Extract Document Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tokenFrontDocument\": \"{{front_token}}\",\n    \"tokenBackDocument\": \"{{back_token}}\",\n    \"countryCode\": \"ESP\",\n    \"decompose\": false,\n    \"tracking\": {\n        \"extraData\": \"postman_test\",\n        \"operationId\": \"op_{{timestamp}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Paso 2: Procesar documentos con tokens"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.identity-platform.io"
+		},
+		{
+			"key": "api_key",
+			"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU"
+		},
+		{
+			"key": "base64_image",
+			"value": "REPLACE_WITH_BASE64_IMAGE"
+		},
+		{
+			"key": "front_token",
+			"value": "REPLACE_WITH_FRONT_TOKEN"
+		},
+		{
+			"key": "back_token",
+			"value": "REPLACE_WITH_BACK_TOKEN"
+		},
+		{
+			"key": "timestamp",
+			"value": "{{$timestamp}}"
+		}
+	]
+}

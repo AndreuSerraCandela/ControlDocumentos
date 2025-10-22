@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "facephi-api-final",
+		"name": "Facephi API - Extract Document Data (Formato Correcto)",
+		"description": "Colección para probar la API de Facephi extractDocumentDataWeb con el formato correcto de tokens",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Extract Document Data Web - Formato Correcto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tokenFrontDocument\": \"test_token_front_123\",\n    \"tokenBackDocument\": \"test_token_back_123\",\n    \"countryCode\": \"ESP\",\n    \"decompose\": false,\n    \"tracking\": {\n        \"extraData\": \"test_extra_data\",\n        \"operationId\": \"test_operation_123\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Extrae datos de un documento usando tokens (formato correcto)"
+			},
+			"response": []
+		},
+		{
+			"name": "Extract Document Data Web - Con Decompose",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tokenFrontDocument\": \"test_token_front_456\",\n    \"tokenBackDocument\": \"test_token_back_456\",\n    \"countryCode\": \"ESP\",\n    \"decompose\": true,\n    \"tracking\": {\n        \"extraData\": \"test_with_decompose\",\n        \"operationId\": \"test_operation_456\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Versión con decompose habilitado"
+			},
+			"response": []
+		},
+		{
+			"name": "Extract Document Data Web - Solo Front",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tokenFrontDocument\": \"test_token_front_only\",\n    \"tokenBackDocument\": null,\n    \"countryCode\": \"ESP\",\n    \"decompose\": false,\n    \"tracking\": {\n        \"extraData\": \"front_only_test\",\n        \"operationId\": \"test_operation_front_only\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Solo procesar el frente del documento"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.identity-platform.io"
+		},
+		{
+			"key": "api_key",
+			"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU"
+		}
+	]
+}

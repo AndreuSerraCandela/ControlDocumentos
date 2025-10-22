@@ -1,0 +1,120 @@
+2025-10-22 17:29:51,120 - INFO - ================================================================================
+2025-10-22 17:29:51,288 - INFO - ================================================================================
+2025-10-22 17:29:51,406 - INFO -    Nombre: INES
+2025-10-22 17:29:51,407 - INFO -    Apellidos: ['ALVAREZ', 'ALVAREZ']
+2025-10-22 17:29:51,408 - INFO -    Nacionalidad: ESP
+2025-10-22 17:29:51,408 - INFO -    Sexo: F
+2025-10-22 17:29:51,409 - INFO -    Fecha de nacimiento: 11/11/1970
+2025-10-22 17:29:51,411 - INFO -    Fecha de expiración: 17/03/2031
+2025-10-22 17:29:51,412 - INFO -    Número de documento: BOE191477
+2025-10-22 17:29:51,434 - INFO -    Validaciones pasadas: 20/20
+2025-10-22 17:29:51,517 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 17:29:51,518 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 17:29:51,518 - INFO -    Modelo: Web Browser
+2025-10-22 17:29:51,518 - INFO -    Marca: Web
+2025-10-22 17:29:51,585 - INFO - ================================================================================
+2025-10-22 17:30:50,183 - INFO - ================================================================================
+2025-10-22 17:30:50,195 - INFO - ================================================================================
+2025-10-22 17:30:50,242 - INFO -    Nombre: INES
+2025-10-22 17:30:50,243 - INFO -    Apellidos: ['ALVAREZ', 'ALVAREZ']
+2025-10-22 17:30:50,243 - INFO -    Nacionalidad: ESP
+2025-10-22 17:30:50,244 - INFO -    Sexo: F
+2025-10-22 17:30:50,244 - INFO -    Fecha de nacimiento: 11/11/1970
+2025-10-22 17:30:50,244 - INFO -    Fecha de expiración: 17/03/2031
+2025-10-22 17:30:50,245 - INFO -    Número de documento: BOE191477
+2025-10-22 17:30:50,256 - INFO -    Validaciones pasadas: 20/20
+2025-10-22 17:30:50,314 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 17:30:50,314 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 17:30:50,315 - INFO -    Modelo: Web Browser
+2025-10-22 17:30:50,315 - INFO -    Marca: Web
+2025-10-22 17:30:50,369 - INFO - ================================================================================
+2025-10-22 17:56:26,366 - INFO - ================================================================================
+2025-10-22 17:56:26,408 - INFO - ================================================================================
+2025-10-22 17:56:26,492 - INFO -    Nombre: DEBUG
+2025-10-22 17:56:26,492 - INFO -    Apellidos: TEST
+2025-10-22 17:56:26,492 - INFO -    Nacionalidad: ESP
+2025-10-22 17:56:26,492 - INFO -    Sexo: M
+2025-10-22 17:56:26,493 - INFO -    Fecha de nacimiento: 01/01/1990
+2025-10-22 17:56:26,493 - INFO -    Fecha de expiración: 01/01/2030
+2025-10-22 17:56:26,493 - INFO -    Número de documento: DEBUG123456
+2025-10-22 17:56:26,511 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 17:56:26,660 - INFO -    OS: Debug OS Debug Test
+2025-10-22 17:56:26,660 - INFO -    Navegador: Debug Browser
+2025-10-22 17:56:26,661 - INFO -    Modelo: Debug Browser
+2025-10-22 17:56:26,661 - INFO -    Marca: Debug
+2025-10-22 17:56:26,697 - INFO - ================================================================================
+2025-10-22 18:39:12,097 - INFO - ================================================================================
+2025-10-22 18:39:12,121 - INFO - ================================================================================
+2025-10-22 18:39:12,174 - INFO -    Nombre: SIMULATED
+2025-10-22 18:39:12,175 - INFO -    Apellidos: USER
+2025-10-22 18:39:12,175 - INFO -    Nacionalidad: ESP
+2025-10-22 18:39:12,176 - INFO -    Sexo: M
+2025-10-22 18:39:12,176 - INFO -    Fecha de nacimiento: 01/01/1990
+2025-10-22 18:39:12,176 - INFO -    Fecha de expiración: 01/01/2030
+2025-10-22 18:39:12,177 - INFO -    Número de documento: SIMULATED_DOC_123
+2025-10-22 18:39:12,193 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 18:39:12,700 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 18:39:12,700 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 18:39:12,700 - INFO -    Modelo: Web Browser
+2025-10-22 18:39:12,701 - INFO -    Marca: Web
+2025-10-22 18:39:12,795 - INFO - ================================================================================
+2025-10-22 20:10:57,517 - INFO - ================================================================================
+2025-10-22 20:10:57,569 - INFO - ================================================================================
+2025-10-22 20:10:57,648 - INFO -    Nombre: ANDRES
+2025-10-22 20:10:57,648 - INFO -    Apellidos: ['SERRA CANDELA']
+2025-10-22 20:10:57,649 - INFO -    Nacionalidad: ESP
+2025-10-22 20:10:57,650 - INFO -    Sexo: M
+2025-10-22 20:10:57,650 - INFO -    Fecha de nacimiento: 1968-03-23
+2025-10-22 20:10:57,651 - INFO -    Fecha de expiración: 2030-07-29
+2025-10-22 20:10:57,651 - INFO -    Número de documento: CLH122813
+2025-10-22 20:10:57,667 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 20:10:57,844 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:10:57,844 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:10:57,844 - INFO -    Modelo: Web Browser
+2025-10-22 20:10:57,845 - INFO -    Marca: Web
+2025-10-22 20:10:57,870 - INFO - ================================================================================
+2025-10-22 20:18:35,216 - INFO - ================================================================================
+2025-10-22 20:18:35,232 - INFO - ================================================================================
+2025-10-22 20:18:35,281 - INFO -    Nombre: ANDRES
+2025-10-22 20:18:35,282 - INFO -    Apellidos: ['SERRA CANDELA']
+2025-10-22 20:18:35,282 - INFO -    Nacionalidad: ESP
+2025-10-22 20:18:35,282 - INFO -    Sexo: M
+2025-10-22 20:18:35,283 - INFO -    Fecha de nacimiento: 1968-03-23
+2025-10-22 20:18:35,283 - INFO -    Fecha de expiración: 2030-07-29
+2025-10-22 20:18:35,283 - INFO -    Número de documento: CLH122813
+2025-10-22 20:18:35,298 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 20:18:35,370 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:18:35,371 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:18:35,371 - INFO -    Modelo: Web Browser
+2025-10-22 20:18:35,371 - INFO -    Marca: Web
+2025-10-22 20:18:35,391 - INFO - ================================================================================
+2025-10-22 20:29:38,076 - INFO - ================================================================================
+2025-10-22 20:29:38,100 - INFO - ================================================================================
+2025-10-22 20:29:38,163 - INFO -    Nombre: ANDRES
+2025-10-22 20:29:38,164 - INFO -    Apellidos: ['SERRA CANDELA']
+2025-10-22 20:29:38,164 - INFO -    Nacionalidad: ESP
+2025-10-22 20:29:38,166 - INFO -    Sexo: M
+2025-10-22 20:29:38,167 - INFO -    Fecha de nacimiento: 1968-03-23
+2025-10-22 20:29:38,167 - INFO -    Fecha de expiración: 2030-07-29
+2025-10-22 20:29:38,167 - INFO -    Número de documento: CLH122813
+2025-10-22 20:29:38,195 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 20:29:38,297 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:29:38,298 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:29:38,298 - INFO -    Modelo: Web Browser
+2025-10-22 20:29:38,298 - INFO -    Marca: Web
+2025-10-22 20:29:38,352 - INFO - ================================================================================
+2025-10-22 20:30:29,151 - INFO - ================================================================================
+2025-10-22 20:30:29,182 - INFO - ================================================================================
+2025-10-22 20:30:29,311 - INFO -    Nombre: ANDRES
+2025-10-22 20:30:29,312 - INFO -    Apellidos: ['SERRA CANDELA']
+2025-10-22 20:30:29,313 - INFO -    Nacionalidad: ESP
+2025-10-22 20:30:29,313 - INFO -    Sexo: M
+2025-10-22 20:30:29,314 - INFO -    Fecha de nacimiento: 1968-03-23
+2025-10-22 20:30:29,318 - INFO -    Fecha de expiración: 2030-07-29
+2025-10-22 20:30:29,323 - INFO -    Número de documento: CLH122813
+2025-10-22 20:30:29,416 - INFO -    Validaciones pasadas: 5/5
+2025-10-22 20:30:30,200 - INFO -    OS: Win32 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:30:30,202 - INFO -    Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0
+2025-10-22 20:30:30,202 - INFO -    Modelo: Web Browser
+2025-10-22 20:30:30,202 - INFO -    Marca: Web
+2025-10-22 20:30:30,240 - INFO - ================================================================================
