@@ -20,6 +20,8 @@ app = FastAPI(title="Document Check API")
 
 # Montar archivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")
+# Montar frontend simple (servirá index.html en /simple)
+app.mount("/simple", StaticFiles(directory="frontend_simple", html=True), name="simple")
 
 # Configurar templates
 templates = Jinja2Templates(directory="templates")
@@ -175,7 +177,11 @@ class BlockedPersonsList(RootModel):
     root: List[BlockedPerson]
 
 @app.get("/")
-async def read_root(request: Request):
+async def landing(request: Request):
+    return templates.TemplateResponse("landing.html", {"request": request})
+
+@app.get("/full")
+async def read_full(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/upload-blocked-list")

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona Sistema - Control de Documentos</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .selector-container { max-width: 800px; margin: 60px auto; text-align: center; }
+        .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { border: 1px solid #e9ecef; border-radius: 12px; padding: 24px; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .card h2 { margin: 0 0 10px 0; }
+        .card p { color: #555; min-height: 44px; }
+        .card a { display: inline-block; margin-top: 16px; padding: 12px 18px; border-radius: 8px; text-decoration: none; color: #fff; background: #667eea; }
+        .card a.secondary { background: #28a745; }
+    </style>
+    <script>
+        // Detecta si backend Facephi (puerto 8001) está disponible para etiquetar el enlace
+        async function checkFacephi() {
+            try {
+                const controller = new AbortController();
+                setTimeout(() => controller.abort(), 1500);
+                await fetch('http://127.0.0.1:8001/documents', { signal: controller.signal });
+                document.getElementById('simple-note').textContent = 'Recomendado para demo con Facephi';
+            } catch (e) {
+                document.getElementById('simple-note').textContent = 'Frontend simple (requiere backend Facephi en 8001)';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', checkFacephi);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="selector-container">
+            <h1>Control de Documentos</h1>
+            <p>Elige el sistema con el que deseas trabajar</p>
+            <div class="options">
+                <div class="card">
+                    <h2>Sistema Completo</h2>
+                    <p>Gestión completa con carga de listados, búsquedas y verificación.</p>
+                    <a class="secondary" href="/full">Entrar al sistema completo</a>
+                </div>
+                <div class="card">
+                    <h2>Sistema Simple (Facephi)</h2>
+                    <p id="simple-note">Frontend simple para escaneo y envío al backend Facephi.</p>
+                    <a href="/simple/">Entrar al sistema simple</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
