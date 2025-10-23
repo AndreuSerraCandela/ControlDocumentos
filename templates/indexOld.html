@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Acceso - Base Naval</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Control de Acceso - Base Naval</h1>
+        
+        <!-- <div class="mobile-link">
+            <a href="https://maybecloud.landing.identity-platform.io/">Plataforma de Identidad</a>
+        </div>
+         -->
+        <div class="status-container">
+            <div id="status-message">Presione el botón para iniciar la verificación</div>
+            <div id="countdown" class="hidden">Tiempo restante: <span id="timer">60</span> segundos</div>
+        </div>
+
+        <div class="button-container">
+            <a href="https://maybecloud.landing.identity-platform.io/" target="_blank">
+                <button id="verify-button">Verificar Documento</button>
+            </a>
+        </div>
+
+        <div class="result-card">
+            <h2>Actualizar Lista de Personas Bloqueadas</h2>
+            <div id="upload-status" class="hidden"></div>
+            
+            <div class="file-upload-container">
+                <form id="upload-form" action="/upload-blocked-list" method="post" enctype="multipart/form-data">
+                    <input type="file" id="excel-file" name="file" accept=".xlsx, .xls" style="display: none;">
+                    <div class="file-input-wrapper">
+                        <span id="file-name">Ningún archivo seleccionado</span>
+                        <button type="button" id="select-file-button">Seleccionar archivo</button>
+                    </div>
+                    <button type="button" id="upload-button" disabled>Subir Excel</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="result-container" class="hidden">
+            <div class="result-card">
+                <h2>Datos del Documento</h2>
+                <div class="data-row">
+                    <span class="label">DNI:</span>
+                    <span id="dni-value">-</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Nombre Completo:</span>
+                    <span id="name-value">-</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Hora de Entrada:</span>
+                    <span id="time-value">-</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">Estado:</span>
+                    <span id="status-value">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert-container" class="hidden">
+            <div class="alert">
+                <h2>¡ALERTA!</h2>
+                <p>Esta persona no tiene autorización para entrar</p>
+            </div>
+        </div>
+
+        <div class="history-container">
+            <h2>Historial de Visitas - Base Naval</h2>
+            <div class="table-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>DNI</th>
+                            <th>Fecha entrada</th>
+                            <th>Hora de entrada</th>
+                            <th>Fecha salida</th>
+                            <th>Hora de salida</th>
+                            <th>Militar</th>
+                            <th>Civil</th>
+                            <th>Nacionalidad</th>
+                            <th>Motivo Visita</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html> 
