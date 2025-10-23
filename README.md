@@ -1,20 +1,61 @@
-# Document Check API
+# Document Check System
 
-This is a simple FastAPI application that allows you to check if a document exists in a list and add it if it doesn't.
+Sistema completo para escanear y gestionar documentos utilizando tecnología Facephi. Incluye una API backend en Python (FastAPI) y un frontend React con integración del SDK de Facephi.
 
-## Setup
+## Arquitectura del Sistema
 
-1. Install the required dependencies:
+### Backend API (Python/FastAPI)
+- API REST para gestión de documentos
+- Validación y almacenamiento de datos
+- Integración con Facephi SDK
+- Endpoints para búsqueda y filtrado
+
+### Frontend (React)
+- Interfaz web moderna y responsive
+- Escaneo de documentos con cámara
+- Visualización de resultados
+- Integración completa con Facephi SDK
+
+## Setup Rápido
+
+### Opción 1: Script Automático
+```bash
+# Windows
+start-dev.bat
+
+# Linux/Mac
+./start-dev.sh
+```
+
+### Opción 2: Manual
+
+#### Backend
+1. Instalar dependencias:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Run the application:
+2. Ejecutar API:
 ```bash
 python main.py
 ```
 
-The API will be available at `http://localhost:8000`
+#### Frontend
+1. Instalar dependencias:
+```bash
+cd frontend
+npm install
+```
+
+2. Ejecutar aplicación:
+```bash
+npm start
+```
+
+### URLs de Acceso
+- **API Backend**: http://localhost:8000
+- **Frontend React**: http://localhost:3000
+- **Documentación API**: http://localhost:8000/docs
 
 ## API Endpoints
 
@@ -209,4 +250,75 @@ curl -X POST "http://localhost:8000/documents/load" \
              }
            }
          }'
-``` 
+```
+
+## Frontend React
+
+### Características del Frontend
+
+- **📱 Escaneo de Documentos**: Utiliza la cámara del dispositivo para capturar documentos
+- **🔍 Búsqueda Avanzada**: Filtra documentos por nacionalidad y DNI
+- **👤 Visualización Facial**: Muestra imágenes faciales extraídas de los documentos
+- **📊 Dashboard**: Estadísticas y gestión de documentos escaneados
+- **🎨 UI Moderna**: Interfaz responsive con Styled Components
+
+### Tecnologías Frontend
+
+- **React 18**: Framework principal
+- **Styled Components**: Estilos CSS-in-JS
+- **Axios**: Cliente HTTP para API
+- **Facephi SDK**: Integración con servicios de identidad
+- **HTML5 Camera API**: Acceso a la cámara del dispositivo
+
+### Configuración Facephi
+
+El frontend está configurado con las siguientes credenciales de Facephi:
+
+- **API Key**: `4WpTfNAjrN7O0DSIas53zOfY26QF61rsnA67rUnS`
+- **Client ID**: `52f5e18b-e599-4de3-91e1-f4b0e80ff657`
+- **Secret ID**: `82880bda-d8c4-448c-baf1-ecc650a3bc58`
+- **Base URL**: `https://api.identity-platform.io`
+
+### Endpoints Facephi Utilizados
+
+- `extractDocumentDataWeb`: Extracción de datos del documento
+- `documentValidation/v2/start`: Inicio del proceso de validación
+- `documentValidation/v2/data`: Datos de validación del documento
+- `documentValidation/v2/status`: Estado del proceso de validación
+- `finishTracking`: Finalización del seguimiento
+
+### Uso del Frontend
+
+1. **Escanear Documento**:
+   - Haz clic en "Iniciar Escaneo"
+   - Permite el acceso a la cámara
+   - Coloca el documento frente a la cámara
+   - Captura el documento
+
+2. **Gestionar Documentos**:
+   - Ve a "Documentos Escaneados"
+   - Usa los filtros de búsqueda
+   - Visualiza información detallada
+   - Activa/desactiva la visualización de caras
+
+### Estructura del Proyecto Frontend
+
+```
+frontend/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── DocumentScanner.js    # Componente de escaneo
+│   │   └── DocumentResults.js    # Componente de resultados
+│   ├── services/
+│   │   └── api.js               # Servicios de API
+│   ├── config/
+│   │   └── facephi.js           # Configuración Facephi
+│   ├── App.js                   # Componente principal
+│   └── index.js                 # Punto de entrada
+├── package.json
+└── README.md
+```
+
+Para más detalles sobre el frontend, consulta [frontend/README.md](frontend/README.md). 

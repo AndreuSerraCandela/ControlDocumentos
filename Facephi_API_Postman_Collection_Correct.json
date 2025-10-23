@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "facephi-api-test-correct",
+		"name": "Facephi API - Extract Document Data (API Key Correcta)",
+		"description": "Colección para probar la API de Facephi extractDocumentDataWeb con la API Key correcta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Extract Document Data Web - API Key Correcta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "apiKey",
+							"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "test_document.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Extrae datos de un documento usando la API de Facephi con la API Key correcta"
+			},
+			"response": []
+		},
+		{
+			"name": "Extract Document Data Web - Solo API Key en Header",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "test_document.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Versión simplificada con solo API Key en header"
+			},
+			"response": []
+		},
+		{
+			"name": "Extract Document Data Web - Con ClientId y SecretId",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "apiKey",
+							"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+							"type": "text"
+						},
+						{
+							"key": "clientId",
+							"value": "52f5e18b-e599-4de3-91e1-f4b0e80ff657",
+							"type": "text"
+						},
+						{
+							"key": "secretId",
+							"value": "82880bda-d8c4-448c-baf1-ecc650a3bc58",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "test_document.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Versión completa con todas las credenciales"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.identity-platform.io"
+		},
+		{
+			"key": "api_key",
+			"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU"
+		},
+		{
+			"key": "client_id",
+			"value": "52f5e18b-e599-4de3-91e1-f4b0e80ff657"
+		},
+		{
+			"key": "secret_id",
+			"value": "82880bda-d8c4-448c-baf1-ecc650a3bc58"
+		}
+	]
+}

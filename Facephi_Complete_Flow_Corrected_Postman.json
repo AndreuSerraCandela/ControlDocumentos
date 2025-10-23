@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "facephi-complete-flow-corrected",
+		"name": "Facephi Complete Flow - CORRECTED (Start + Status + Extract)",
+		"description": "Flujo completo CORREGIDO de Facephi: documentValidation/v2/start → status → extractDocumentDataWeb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Document Validation Start",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"ESP\",\n    \"idType\": \"DNI\",\n    \"documentRawImageMimeType\": \"image/jpeg\",\n    \"documentFrontRawImage\": \"{{base64_image}}\",\n    \"documentBackRawImage\": \"{{base64_image_back}}\",\n    \"merchantIdScanReference\": \"scan_ref_{{timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/verify/documentValidation/v2/start",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"verify",
+						"documentValidation",
+						"v2",
+						"start"
+					]
+				},
+				"description": "Paso 1: Subir imágenes y obtener scanReference"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Document Validation Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.identity-platform.io/verify/documentValidation/v2/status?scanReference={{scan_reference}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"verify",
+						"documentValidation",
+						"v2",
+						"status"
+					],
+					"query": [
+						{
+							"key": "scanReference",
+							"value": "{{scan_reference}}",
+							"description": "ScanReference obtenido del paso 1"
+						}
+					]
+				},
+				"description": "Paso 2: Obtener tokens después de 30 segundos"
+			},
+			"response": []
+		},
+		{
+			"name": "3. Extract Document Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tokenFrontDocument\": \"{{front_token}}\",\n    \"tokenBackDocument\": \"{{back_token}}\",\n    \"countryCode\": \"ESP\",\n    \"decompose\": false,\n    \"tracking\": {\n        \"extraData\": \"postman_test\",\n        \"operationId\": \"op_{{timestamp}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.identity-platform.io/services/extractDocumentDataWeb",
+					"protocol": "https",
+					"host": [
+						"api",
+						"identity-platform",
+						"io"
+					],
+					"path": [
+						"services",
+						"extractDocumentDataWeb"
+					]
+				},
+				"description": "Paso 3: Procesar documentos con tokens obtenidos del status"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api.identity-platform.io"
+		},
+		{
+			"key": "api_key",
+			"value": "kpl4u8fgxZSqD7LUQva5Myr0G7ab95a8MVO9rBlU"
+		},
+		{
+			"key": "base64_image",
+			"value": "REPLACE_WITH_BASE64_IMAGE_FRONT"
+		},
+		{
+			"key": "base64_image_back",
+			"value": "REPLACE_WITH_BASE64_IMAGE_BACK"
+		},
+		{
+			"key": "scan_reference",
+			"value": "REPLACE_WITH_SCAN_REFERENCE"
+		},
+		{
+			"key": "front_token",
+			"value": "REPLACE_WITH_FRONT_TOKEN"
+		},
+		{
+			"key": "back_token",
+			"value": "REPLACE_WITH_BACK_TOKEN"
+		},
+		{
+			"key": "timestamp",
+			"value": "{{$timestamp}}"
+		}
+	]
+}
