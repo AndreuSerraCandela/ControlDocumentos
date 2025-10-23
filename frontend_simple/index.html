@@ -478,48 +478,48 @@
             
             const imageData = canvas.toDataURL('image/jpeg', 0.8);
             
-            if (captureStep === 'front') {
+            //if (captureStep === 'front') {
                 // Capturar parte delantera
                 frontImageData = imageData;
-                captureStep = 'back';
+                //captureStep = 'back';
                 
                 // Mostrar instrucciones para la parte trasera
-                showMessage('✅ Parte delantera capturada. Ahora da la vuelta al documento y captura la parte trasera', 'info');
+                //showMessage('✅ Parte delantera capturada. Ahora da la vuelta al documento y captura la parte trasera', 'info');
                 
                 // Actualizar el botón de captura
-                const captureBtn = document.getElementById('capture-btn');
-                captureBtn.textContent = 'Capturar Parte Trasera';
-                captureBtn.style.backgroundColor = '#ff9800';
+                //const captureBtn = document.getElementById('capture-btn');
+                //captureBtn.textContent = 'Capturar Parte Trasera';
+                //captureBtn.style.backgroundColor = '#ff9800';
                 
                 // Continuar con la cámara activa para la siguiente captura
                 
-            } else if (captureStep === 'back') {
+            //} else if (captureStep === 'back') {
                 // Capturar parte trasera y procesar ambas imágenes
-                const backImageData = imageData;
-                
-                // Procesar ambas imágenes con Facephi
-                const documentData = await processDocumentWithFacephi(frontImageData, backImageData);
-                
-                // Send to backend
-                await sendDocumentToBackend(documentData);
-                
-                // Add to local documents list
-                documents.push(documentData);
-                updateDocumentsList();
-                
-                // Reset para la siguiente captura
-                resetCaptureFlow();
-                stopScanning();
-                
-                // Show success message
-                showSuccess('Documento completo capturado y procesado correctamente');
-            }
+            const backImageData = imageData;
+            
+            // Procesar ambas imágenes con Facephi
+            const documentData = await processDocumentWithFacephi(frontImageData, null);
+            
+            // Send to backend
+            await sendDocumentToBackend(documentData);
+            
+            // Add to local documents list
+            documents.push(documentData);
+            updateDocumentsList();
+            
+            // Reset para la siguiente captura
+            resetCaptureFlow();
+            stopScanning();
+            
+            // Show success message
+            showSuccess('Documento completo capturado y procesado correctamente');
+            //}
         }
 
         async function processDocumentWithFacephi(frontImageData, backImageData) {
             console.log('🔍 DEBUG: Iniciando procesamiento de documento');
             console.log('🔍 DEBUG: Imagen delantera, tamaño:', frontImageData.length, 'caracteres');
-            console.log('🔍 DEBUG: Imagen trasera, tamaño:', backImageData.length, 'caracteres');
+            console.log('🔍 DEBUG: Imagen trasera, tamaño:', backImageData ? backImageData.length : 'null', 'caracteres');
             
             try {
                 showMessage('🔄 Procesando documento con Facephi SDK...', 'info');
@@ -548,23 +548,27 @@
                 });
                 
                 // Convertir imagen trasera a base64
-                const backResponse = await fetch(backImageData);
-                const backBlob = await backResponse.blob();
-                const backBase64 = await new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result.split(',')[1]);
-                    reader.readAsDataURL(backBlob);
-                });
+                //Si no hay imagen trasera, se envía null
+                let backBase64 = null;
+                if (backImageData) {
+                    const backResponse = await fetch(backImageData);
+                    const backBlob = await backResponse.blob();
+                    backBase64 = await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result.split(',')[1]);
+                        reader.readAsDataURL(backBlob);
+                    });
+                }
                 
                 console.log('🔍 DEBUG: Imagen delantera convertida, tamaño:', frontBase64.length, 'caracteres');
-                console.log('🔍 DEBUG: Imagen trasera convertida, tamaño:', backBase64.length, 'caracteres');
+                console.log('🔍 DEBUG: Imagen trasera convertida, tamaño:', backBase64 ? backBase64.length : 'null', 'caracteres');
                 
                 const startData = {
                     country: "ESP",
                     idType: "ID_CARD",
                     documentRawImageMimeType: "image/jpeg",
                     documentFrontRawImage: frontBase64,
-                    documentBackRawImage: backBase64, // Imagen real de la parte trasera
+                    ...(backBase64 ? { documentBackRawImage: backBase64 } : {}),
                     merchantIdScanReference: `scan_ref_${Date.now()}`
                 };
                 
@@ -574,7 +578,7 @@
                     mimeType: startData.documentRawImageMimeType,
                     scanReference: startData.merchantIdScanReference,
                     frontImageSize: frontBase64.length,
-                    backImageSize: backBase64.length
+                    backImageSize: backBase64 ? backBase64.length : null
                 });
                 
                 const startResponse = await fetch(facephiConfig.baseUrl + '/verify/documentValidation/v2/start', {
