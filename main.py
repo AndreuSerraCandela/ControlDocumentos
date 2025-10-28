@@ -184,6 +184,11 @@ async def landing(request: Request):
 async def read_full(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/facephi")
+async def facephi_system(request: Request):
+    """Sistema Facephi completo con frontend y backend integrados"""
+    return templates.TemplateResponse("facephi.html", {"request": request})
+
 @app.post("/upload-blocked-list")
 async def upload_blocked_list(
     request: Request,
